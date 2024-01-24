@@ -16,7 +16,7 @@ Imports:
     rlang,
     tibble,
     tidyr
-URL: https://github.com/eurocontrol/pockethostr
+URL: https://github.com/eurocontrol/pockethostr, https://euctrl-pru.github.io/pockethostr/
 Suggests: 
     knitr,
     rmarkdown
