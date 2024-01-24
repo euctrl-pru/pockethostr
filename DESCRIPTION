@@ -1,0 +1,23 @@
+Package: pockethostr
+Title: Pockethost for R
+Version: 0.0.0.9000
+Authors@R: 
+    person("Enrico", "Spinielli", , "enrico.spinielli@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-8584-9131"))
+Description: This package provides an R API for pockethost app instances.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    dplyr,
+    httr2,
+    purrr,
+    rlang,
+    tibble,
+    tidyr
+URL: https://github.com/eurocontrol/pockethostr
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

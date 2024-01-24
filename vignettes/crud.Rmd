@@ -1,0 +1,107 @@
+---
+title: "Create, read, update and delete records"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Create, read, update and delete records}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, eval=FALSE}
+library(pockethostr)
+
+app <- "eurocontrol-data"
+collection <- "nw_traffic"
+```
+
+## Read records
+
+This is what the mobile app would typically need:
+* single record: `perPage = 1`.
+* latest temporal entry (descending sort on `FLIGHT_DATE`, `sort = "-FLIGHT_DATE"` ).
+
+Here we also make sure not to ask for totals because this improves performance/speed
+on the server side,i.e. set `skipTotal` to any value.
+
+```{r read-record, eval=FALSE}
+# only last temporal entry, no totals
+ph_list_records(
+    app = app,
+    api = "/api/collections/",
+    collection = collection,
+    perPage = 1,
+    sort = "-FLIGHT_DATE",
+    skipTotal = 1)
+```
+
+
+All (paged) records (two per page, just as an example) and totals.
+
+```{r paged-records, eval=FALSE}
+# only one entry, w/ totals
+ph_list_records(
+  app = app,
+  api = "/api/collections/",
+  collection = collection,
+  perPage = 2,
+  sort = "-FLIGHT_DATE")
+```
+
+
+## Authentication
+
+```{r authehticate-admin, eval=FALSE}
+username <- "you@colossal-cave.adventure"
+password <- "xyzzy"
+
+
+# req_dry_run(redact_headers = FALSE)
+adm <- ph_authenticate_admin_username_password(
+    app,
+    "/api/admins/auth-with-password",
+    username,
+    password)
+```
+
+
+## Delete record
+You need to know the record ID in order to send a delete request.
+You can get all record IDs with a read records request `ph_list_records()`, see above.
+
+You need to pass an admin token to do so (in this app at least), so you need to be authenticated first.
+
+```{r delete-record, eval=FALSE}
+ph_delete_record(
+  app = app,
+  api = "/api/collections/",
+  collection = collection,
+  id = "pu0kfs31ngg5ec3",
+  token = adm$token
+)
+```
+
+
+## Create record
+
+```{r create-record, eval=FALSE}
+bd <- list(
+  DAY_TFC= 24944,
+  FLIGHT_DATE= "2024-01-03 00:00:00.000Z",
+  Y2D_TFC_YEAR= 440276
+)
+
+ph_create_record(
+  app = app,
+  api = "/api/collections",
+  collection = collection,
+  token = adm$token,
+  body = bd)
+```
+
