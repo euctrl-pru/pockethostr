@@ -1,0 +1,65 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# pockethostr
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+This is a very early attempt to wrap the EUROCONTROL Data API from [PoketHost][ph] in R.
+
+It will probably result in a more low-level generic package to support [PocketBase][pb]/PocketHost
+and a package specific for the EUROCONTROL Data App.
+
+[ph]: <https://pockethost.io/> "PocketHost - Amazingly Simple PocketBase Hosting"
+[pb]: <https://pocketbase.io/> "PocketBase - Open Source backend for your next SaaS and Mobile app
+in 1 file"
+
+## Installation
+
+You can install the development version of `pockethostr` from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pkg_install("euctrl-pru/pockethostr")
+```
+
+## Example
+
+List all records in the EUROCONTROL Data app:
+
+```{r list-all-records, eval=FALSE}
+library(pockethostr)
+
+ph_list_records(
+  app = "eurocontrol-data",
+  api = "/api/collections/",
+  collection = "nw_traffic",
+  sort = "-FLIGHT_DATE")
+```
+
+# Development
+
+In order to build the relevant pkgdown web pages, execute the following code:
+
+```{r pkgdown-cuild, eval=FALSE}
+# How to build the pakgdown from behind proxied Internet
+library(withr)
+library(pkgdown)
+
+with_options(list(pkgdown.internet = FALSE),
+             build_site())
+```
+
