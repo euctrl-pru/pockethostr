@@ -9,7 +9,7 @@
 **WORK in PROGRESS** and subject to change.
 
 This is a very early attempt to wrap the EUROCONTROL Data API from
-[PoketHost](https://pockethost.io/ "PocketHost - Amazingly Simple PocketBase Hosting")
+[PocketHost](https://pockethost.io/ "PocketHost - Amazingly Simple PocketBase Hosting")
 in R.
 
 It will probably result in a more low-level generic package to support
