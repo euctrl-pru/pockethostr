@@ -9,7 +9,7 @@
 **WORK in PROGRESS** and subject to change.
 
 This is a very early attempt to wrap the EUROCONTROL Data API from
-[PocketHost](https://pockethost.io/ "PocketHost - Amazingly Simple PocketBase Hosting")
+[PoketHost](https://pockethost.io/ "PocketHost - Amazingly Simple PocketBase Hosting")
 in R.
 
 It will probably result in a more low-level generic package to support
@@ -32,6 +32,9 @@ List all records in the EUROCONTROL Data app:
 
 ``` r
 library(pockethostr)
+
+app <- "eurocontrol-data-test"
+collection <- "nw_traffic"
 
 ph_list_records(
   app = "eurocontrol-data-test",

@@ -45,6 +45,9 @@ List all records in the EUROCONTROL Data app:
 ```{r list-all-records, eval=FALSE}
 library(pockethostr)
 
+app <- "eurocontrol-data-test"
+collection <- "nw_traffic"
+
 ph_list_records(
   app = "eurocontrol-data-test",
   api = "/api/collections/",
