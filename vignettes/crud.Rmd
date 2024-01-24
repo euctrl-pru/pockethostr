@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup, eval=FALSE}
 library(pockethostr)
 
-app <- "eurocontrol-data"
+app <- "eurocontrol-data-test"
 collection <- "nw_traffic"
 ```
 

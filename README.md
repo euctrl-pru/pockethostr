@@ -34,7 +34,7 @@ List all records in the EUROCONTROL Data app:
 library(pockethostr)
 
 ph_list_records(
-  app = "eurocontrol-data",
+  app = "eurocontrol-data-test",
   api = "/api/collections/",
   collection = "nw_traffic",
   sort = "-FLIGHT_DATE")
