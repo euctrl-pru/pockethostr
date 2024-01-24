@@ -6,6 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
+**WORK in PROGRESS** and subject to change.
+
 This is a very early attempt to wrap the EUROCONTROL Data API from
 [PoketHost](https://pockethost.io/ "PocketHost - Amazingly Simple PocketBase Hosting")
 in R.

@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
+**WORK in PROGRESS** and subject to change.
+
 This is a very early attempt to wrap the EUROCONTROL Data API from [PoketHost][ph] in R.
 
 It will probably result in a more low-level generic package to support [PocketBase][pb]/PocketHost
