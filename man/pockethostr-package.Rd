@@ -12,6 +12,7 @@ This package provides an R API for pockethost app instances.
 Useful links:
 \itemize{
   \item \url{https://github.com/eurocontrol/pockethostr}
+  \item \url{https://euctrl-pru.github.io/pockethostr/}
 }
 
 }
