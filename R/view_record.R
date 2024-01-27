@@ -23,7 +23,8 @@ ph_view_record <- function(app, api, collection, id, ...) {
     httr2::req_url_path_append(id) |>
     httr2::req_url_query(!!!params) |>
     httr2::req_user_agent(.POCKETHOSTR_UA) |>
-    httr2::req_perform()
+    httr2::req_perform() |>
+    httr2::resp_body_json()
 }
 
 

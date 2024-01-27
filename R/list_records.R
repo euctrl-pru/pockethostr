@@ -18,8 +18,18 @@
 #'   perPage = 1,
 #'   sort = "-FLIGHT_DATE",
 #'   skipTotal = 1)
+#'
+#' # get only subset of columns
+#' ph_list_records(
+#'   app,
+#'   "/api/collections/",
+#'   collection = "nw_traffic",
+#'   sort = "-FLIGHT_DATE",
+#'   fileds = "id,FLIGHT_DATE,DAY_TFC"
+#'   )
 #' }
 ph_list_records <- function(app, api, collection, ..., perPage = 30) {
+  # TODO: accept only the supported params
   params <- list(..., perPage = perPage)
 
   withCallingHandlers(
