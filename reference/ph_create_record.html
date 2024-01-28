@@ -54,7 +54,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ph_create_record</span><span class="op">(</span><span class="va">app</span>, <span class="va">api</span>, <span class="va">collection</span>, <span class="va">token</span>, <span class="va">body</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ph_create_record</span><span class="op">(</span><span class="va">app</span>, <span class="va">api</span>, <span class="va">collection</span>, <span class="va">body</span>, token <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -68,15 +68,15 @@
 
 
 <dt>collection</dt>
-<dd><p>the collection</p></dd>
-
-
-<dt>token</dt>
-<dd><p>the token</p></dd>
+<dd><p>the collection name or id</p></dd>
 
 
 <dt>body</dt>
 <dd><p>the body</p></dd>
+
+
+<dt>token</dt>
+<dd><p>the authentication token, depending on collection's <code>createRule</code></p></dd>
 
 
 <dt>...</dt>
