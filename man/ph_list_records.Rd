@@ -4,7 +4,7 @@
 \alias{ph_list_records}
 \title{list records}
 \usage{
-ph_list_records(app, api, collection, ..., perPage = 30)
+ph_list_records(app, api, collection, ...)
 }
 \arguments{
 \item{app}{the application name}
@@ -13,9 +13,7 @@ ph_list_records(app, api, collection, ..., perPage = 30)
 
 \item{collection}{the collection}
 
-\item{...}{other query params}
-
-\item{perPage}{number of records per page}
+\item{...}{the query params as supported by \href{https://pocketbase.io/docs/api-records/#listsearch-records}{PocketBase}}
 }
 \value{
 a tibble

@@ -3,8 +3,7 @@
 #' @param app the application name
 #' @param api the api to hit
 #' @param collection the collection
-#' @param ... other query params
-#' @param perPage number of records per page
+#' @param ... the query params as supported by [PocketBase](https://pocketbase.io/docs/api-records/#listsearch-records)
 #'
 #' @return a tibble
 #' @export
@@ -28,9 +27,10 @@
 #'   fileds = "id,FLIGHT_DATE,DAY_TFC"
 #'   )
 #' }
-ph_list_records <- function(app, api, collection, ..., perPage = 30) {
-  # TODO: accept only the supported params
-  params <- list(..., perPage = perPage)
+ph_list_records <- function(app, api, collection, ...) {
+  params <- list(...)
+
+  check_list_params(params)
 
   withCallingHandlers(
     v <- base_url(app = app) |>
@@ -60,4 +60,14 @@ ph_list_records <- function(app, api, collection, ..., perPage = 30) {
       totalPages = v$totalPages
     )
 
+}
+
+# check that the params are those supported by PocketBase
+check_list_params <- function(params, call = rlang::caller_env()) {
+  param_names <- names(params)
+  possible_param_names <- c("page", "perPage", "sort", "filter", "expand", "fields", "skipTotal")
+  non_supported <- setdiff(param_names, possible_param_names)
+  if (length(non_supported) > 0) {
+    cli::cli_abort("{.params {non_supported}}: Not supported.", call = call)
+  }
 }
