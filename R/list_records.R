@@ -2,7 +2,7 @@
 #'
 #' @param app the application name
 #' @param api the api to hit
-#' @param collection the collection
+#' @param collection the collection name or id
 #' @param ... the query params as supported by
 #'            [PocketBase List/Search API](https://pocketbase.io/docs/api-records/#listsearch-records)
 #'

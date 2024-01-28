@@ -4,18 +4,18 @@
 \alias{ph_create_record}
 \title{create record}
 \usage{
-ph_create_record(app, api, collection, token, body, ...)
+ph_create_record(app, api, collection, body, token = NULL, ...)
 }
 \arguments{
 \item{app}{the app}
 
 \item{api}{the api}
 
-\item{collection}{the collection}
-
-\item{token}{the token}
+\item{collection}{the collection name or id}
 
 \item{body}{the body}
+
+\item{token}{the authentication token, depending on collection's \code{createRule}}
 
 \item{...}{extra params}
 }

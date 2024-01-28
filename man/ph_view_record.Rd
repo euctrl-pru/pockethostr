@@ -11,7 +11,7 @@ ph_view_record(app, api, collection, id, ...)
 
 \item{api}{the api}
 
-\item{collection}{the collection}
+\item{collection}{the collection name or id}
 
 \item{id}{the record id}
 

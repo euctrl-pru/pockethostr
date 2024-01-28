@@ -11,7 +11,7 @@ ph_list_records(app, api, collection, ...)
 
 \item{api}{the api to hit}
 
-\item{collection}{the collection}
+\item{collection}{the collection name or id}
 
 \item{...}{the query params as supported by
 \href{https://pocketbase.io/docs/api-records/#listsearch-records}{PocketBase List/Search API}}

@@ -4,18 +4,18 @@
 \alias{ph_delete_record}
 \title{Delete record}
 \usage{
-ph_delete_record(app, api, collection, id, token)
+ph_delete_record(app, api, collection, id, token = NULL)
 }
 \arguments{
 \item{app}{the app name}
 
 \item{api}{the api}
 
-\item{collection}{the collection}
+\item{collection}{the collection name or id}
 
 \item{id}{the record id}
 
-\item{token}{the authentication token}
+\item{token}{the authentication token, depending on collection's \code{deleteRule}}
 }
 \value{
 a response

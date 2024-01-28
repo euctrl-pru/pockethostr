@@ -2,9 +2,9 @@
 #'
 #' @param app the app
 #' @param api the api
-#' @param collection the collection
-#' @param token the token
+#' @param collection the collection name or id
 #' @param body the body
+#' @param token the authentication token, depending on collection's `createRule`
 #' @param ... extra params
 #'
 #' @return a response
@@ -37,23 +37,41 @@
 #'   token = adm$token,
 #'   body = bd)
 #' }
-ph_create_record <- function(app, api, collection, token, body, ...) {
+ph_create_record <- function(app, api, collection, body, token = NULL, ...) {
   params <- list(...)
+  check_create_params(params)
+
+  req <- base_url(app = app) |>
+    httr2::request() |>
+    httr2::req_url_path_append(api) |>
+    httr2::req_url_path_append(collection) |>
+    httr2::req_url_path_append("records") |>
+    httr2::req_method("POST") |>
+    httr2::req_user_agent(.POCKETHOSTR_UA) |>
+    httr2::req_url_query(!!!params) |>
+    httr2::req_body_json(body)
+
+  # add token if present. this depends on the collection's createRule
+  if (!is.null(token)) {
+    req <- req |>
+      httr2::req_headers(Authorization = token)
+  }
 
   withCallingHandlers(
-    base_url(app = app) |>
-      httr2::request() |>
-      httr2::req_url_path_append(api) |>
-      httr2::req_url_path_append(collection) |>
-      httr2::req_url_path_append("records") |>
-      httr2::req_method("POST") |>
-      httr2::req_user_agent(.POCKETHOSTR_UA) |>
-      httr2::req_headers(Authorization = token) |>
-      httr2::req_url_query(!!!params) |>
-      httr2::req_body_json(body) |>
-      httr2::req_perform(),
+    req |> httr2::req_perform(),
     httr2_http = function(cnd) {
       rlang::abort("Incorrect request", parent = cnd)
     }
   )
+}
+
+
+# check that the params are those supported by PocketBase
+check_create_params <- function(params, call = rlang::caller_env()) {
+  param_names <- names(params)
+  possible_param_names <- c("expand", "fields")
+  non_supported <- setdiff(param_names, possible_param_names)
+  if (length(non_supported) > 0) {
+    cli::cli_abort("{.params {non_supported}}: Not supported.", call = call)
+  }
 }
