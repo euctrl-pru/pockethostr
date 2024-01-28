@@ -15,7 +15,8 @@ ph_view_record(app, api, collection, id, ...)
 
 \item{id}{the record id}
 
-\item{...}{other query params}
+\item{...}{the query params as supported by
+\href{https://pocketbase.io/docs/api-records/#view-record}{PocketBase View API}}
 }
 \value{
 a response

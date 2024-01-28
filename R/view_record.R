@@ -4,7 +4,8 @@
 #' @param api the api
 #' @param collection the collection
 #' @param id the record id
-#' @param ... other query params
+#' @param ... the query params as supported by
+#'            [PocketBase View API](https://pocketbase.io/docs/api-records/#view-record)
 #'
 #' @return a response
 #' @export
@@ -15,6 +16,8 @@
 #' }
 ph_view_record <- function(app, api, collection, id, ...) {
   params <- list(...)
+  check_view_params(params)
+
   base_url(app = app) |>
     httr2::request() |>
     httr2::req_url_path_append(api) |>
@@ -28,6 +31,15 @@ ph_view_record <- function(app, api, collection, id, ...) {
 }
 
 
+# check that the params are those supported by PocketBase
+check_view_params <- function(params, call = rlang::caller_env()) {
+  param_names <- names(params)
+  possible_param_names <- c("expand", "fields")
+  non_supported <- setdiff(param_names, possible_param_names)
+  if (length(non_supported) > 0) {
+    cli::cli_abort("{.params {non_supported}}: Not supported.", call = call)
+  }
+}
 
 
 

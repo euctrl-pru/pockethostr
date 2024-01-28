@@ -3,7 +3,8 @@
 #' @param app the application name
 #' @param api the api to hit
 #' @param collection the collection
-#' @param ... the query params as supported by [PocketBase](https://pocketbase.io/docs/api-records/#listsearch-records)
+#' @param ... the query params as supported by
+#'            [PocketBase List/Search API](https://pocketbase.io/docs/api-records/#listsearch-records)
 #'
 #' @return a tibble
 #' @export
@@ -29,7 +30,6 @@
 #' }
 ph_list_records <- function(app, api, collection, ...) {
   params <- list(...)
-
   check_list_params(params)
 
   withCallingHandlers(
