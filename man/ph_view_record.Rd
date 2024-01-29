@@ -26,6 +26,6 @@ View record
 }
 \examples{
 \dontrun{
-ph_view_record(app, api, id, fileds = "COL1,COL3")
+ph_view_record(app, api, id, collection, fields = "COL1,COL3")
 }
 }
