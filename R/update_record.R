@@ -4,6 +4,7 @@
 #' @param api the api
 #' @param collection the collection name or id
 #' @param id the record id
+#' @param body the body
 #' @param token the authentication token, depending on collection's `updateRule`
 #' @param ... the query params as supported by
 #'            [PocketBase View API](https://pocketbase.io/docs/api-records/#update-record)
@@ -13,10 +14,25 @@
 #'
 #' @examples
 #' \dontrun{
-#' delete_record(app, api, id, token)
+#' adm <- ph_authenticate_admin_username_password(
+#'   "eurocontrol-data-test",
+#'   "/api/admins/auth-with-password",
+#'   username,
+#'   password)
+#'   bd <- list(
+#'     DAY_TFC= 121,
+#'     FLIGHT_DATE= "2024-05-01 00:00:00.000Z"
+#'     )
+#'  id <- "lufkj3346ygx9a2"
+#'  ph_update_record(
+#'   app = "eurocontrol-data-test",
+#'   api = "/api/collections",
+#'   collection = "nw_traffic",
+#'   token = adm$token,
+#'   body = bd)
 #' }
-ph_update_record <- function(app, api, collection, id, token = NULL, ...) {
-  params <- list(...)
+ph_update_record <- function(app, api, collection, id, body, token = NULL, ...) {
+  params <- rlang::list2(...)
   check_update_params(params)
 
   req <- base_url(app = app) |>
@@ -25,8 +41,10 @@ ph_update_record <- function(app, api, collection, id, token = NULL, ...) {
     httr2::req_url_path_append(collection) |>
     httr2::req_url_path_append("records") |>
     httr2::req_url_path_append(id) |>
-    httr2::req_method("DELETE") |>
-    httr2::req_user_agent(.POCKETHOSTR_UA)
+    httr2::req_method("PATCH") |>
+    httr2::req_user_agent(.POCKETHOSTR_UA) |>
+    httr2::req_url_query(!!!params) |>
+    httr2::req_body_json(body)
 
   # add token if present. this depends on the collection's updateRule
   if (!is.null(token)) {

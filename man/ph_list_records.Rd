@@ -38,7 +38,7 @@ ph_list_records(
   "/api/collections/",
   collection = "nw_traffic",
   sort = "-FLIGHT_DATE",
-  fileds = "id,FLIGHT_DATE,DAY_TFC"
+  fields = "id,FLIGHT_DATE,DAY_TFC"
   )
 }
 }

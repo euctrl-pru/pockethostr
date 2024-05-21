@@ -25,6 +25,6 @@ Delete record
 }
 \examples{
 \dontrun{
-delete_record(app, api, id, token)
+ph_delete_record(app, api, id, token)
 }
 }

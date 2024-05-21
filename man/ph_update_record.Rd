@@ -4,7 +4,7 @@
 \alias{ph_update_record}
 \title{Update record}
 \usage{
-ph_update_record(app, api, collection, id, token = NULL, ...)
+ph_update_record(app, api, collection, id, body, token = NULL, ...)
 }
 \arguments{
 \item{app}{the app name}
@@ -14,6 +14,8 @@ ph_update_record(app, api, collection, id, token = NULL, ...)
 \item{collection}{the collection name or id}
 
 \item{id}{the record id}
+
+\item{body}{the body}
 
 \item{token}{the authentication token, depending on collection's \code{updateRule}}
 
@@ -28,6 +30,21 @@ Update record
 }
 \examples{
 \dontrun{
-delete_record(app, api, id, token)
+adm <- ph_authenticate_admin_username_password(
+  "eurocontrol-data-test",
+  "/api/admins/auth-with-password",
+  username,
+  password)
+  bd <- list(
+    DAY_TFC= 121,
+    FLIGHT_DATE= "2024-05-01 00:00:00.000Z"
+    )
+ id <- "lufkj3346ygx9a2"
+ ph_update_record(
+  app = "eurocontrol-data-test",
+  api = "/api/collections",
+  collection = "nw_traffic",
+  token = adm$token,
+  body = bd)
 }
 }

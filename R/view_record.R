@@ -12,10 +12,18 @@
 #'
 #' @examples
 #' \dontrun{
-#' ph_view_record(app, api, id, collection, fields = "COL1,COL3")
+#' app <- "eurocontrol-data-test"
+#' collection <- "nw_traffic"
+#' id <- "lufkj3346ygx9a2"
+#'
+#' ph_view_record(app = app,
+#'                api = "/api/collections",
+#'                id = id,
+#'                collection = collection,
+#'                fields = "FLIGHT_DATE,DAY_TFC")
 #' }
 ph_view_record <- function(app, api, collection, id, ...) {
-  params <- list(...)
+  params <- rlang::list2(...)
   check_view_params(params)
 
   base_url(app = app) |>

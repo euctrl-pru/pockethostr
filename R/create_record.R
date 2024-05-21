@@ -38,7 +38,7 @@
 #'   body = bd)
 #' }
 ph_create_record <- function(app, api, collection, body, token = NULL, ...) {
-  params <- list(...)
+  params <- rlang::list2(...)
   check_create_params(params)
 
   req <- base_url(app = app) |>
